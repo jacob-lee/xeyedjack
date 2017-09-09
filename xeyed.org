@@ -1,0 +1,318 @@
+
+# -*- org-emphasis-alist: nil -*-
+
+#+TITLE: Pathfinder Character Sheet
+
+# Just fill in the relevant information in the tables and recalculate all tables
+# if necessary
+# M-x org-table-recalculate-buffer-tables
+
+* Basic Character Info
+  - Name :: X Eyed Jack
+  - Race :: Human
+  - Gender :: Male
+  - Height :: 6ft
+  - Weight :: 204lbs
+  - Age :: 25
+  - Alignment :: Chaotic Neutral
+  - Deity :: Besmara
+  - Background Occupation :: Sailor and Cook; Womanizer and Gambler; Dancer with Kites
+  - Languages :: Common
+
+  #+NAME:Size
+  |------------|
+  | Size Bonus |
+  |------------|
+  |          0 |
+  |------------|
+
+* Character Stats
+  #+NAME:Stats
+  |---+--------------+-------+----------+------+----------+---------+------|
+  | ! | Stat         | Total | Modifier | Base | Inherent | Enhance | Misc |
+  |---+--------------+-------+----------+------+----------+---------+------|
+  | # | Strength     | 10    |        0 |   10 |          |         |      |
+  | # | Dexterity    | 18    |        4 |   18 |          |         |      |
+  | # | Constitution | 13    |        1 |   13 |          |         |      |
+  | # | Intelligence | 10    |        0 |   10 |          |         |      |
+  | # | Wisdom       | 10    |        0 |   10 |          |         |      |
+  | # | Charisma     | 16    |        3 |   16 |          |         |      |
+  |---+--------------+-------+----------+------+----------+---------+------|
+  #+TBLFM: $3=vsum($5..$8)::$4=floor(($3 - 10) / 2)
+
+  #+NAME:Initiative
+  |---+------------+-------+-----------+-------------+-------------------------|
+  | ! |            | Total | Dexterity | Reactionary | Swashbuckler Initiative |
+  |---+------------+-------+-----------+-------------+-------------------------|
+  | # | Initiative |     8 |         4 |           2 |                       2 |
+  |---+------------+-------+-----------+-------------+-------------------------|
+  #+TBLFM: @2$3=vsum(@2$4..@2$6)::@2$4=remote(Stats, @3$Modifier)
+
+* Class
+  #+NAME:Class
+  |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
+  | ! |     HP | HD  | Class Name    | BAB | Skills | Fort | Ref | Will | Levels |
+  |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
+  |   |     34 | d10 | Swashbuckler  |   4 |     17 |    1 |   4 |    1 |      4 |
+  |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
+  |   | Totals |     | Favored Class |     |        |      |     |      |        |
+  |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
+  | # |     34 |     | Swashbuckler  |   4 |     17 |    1 |   4 |    1 |      4 |
+  |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
+  #+TBLFM: @>$2=vsum(@2..@-2)::@>$5..@>$10=vsum(@2..@-2)
+
+  #+NAME:Experience
+  |------------+------|
+  | Experience | 9100 |
+  |------------+------|
+
+  #+NAME:Panache
+  |---+-------+------------+-------------+------|
+  | ! | Total | Base (Chr) | Class Bonus | Misc |
+  |---+-------+------------+-------------+------|
+  | # |     5 |          3 |           2 |      |
+  |---+-------+------------+-------------+------|
+  #+TBLFM: @>$2=vsum(@>$3..@>$5)::@2$3=remote(Stats, @7$Modifier) 
+
+  #+NAME:Feats
+  |----------------+--------------------------+----------------------------------------------------------------------------------------------------------|
+  | Name           | Schedule Info            | Description                                                                                              |
+  |----------------+--------------------------+----------------------------------------------------------------------------------------------------------|
+  | Weapon Focus   | Racial bonus feat        | Cutlass +1 bonus on attack rolls                                                                         |
+  | Weapon Finesse | Via Swashbuckler Finesse | Dexterity mod on attack rolls with light weapon, rapier, whip, spiked chain                              |
+  | Slashing Grace | 1st level feat           | Treat slashing weapon as piercing. Use Dex instead of Str to damage. Allows Swashbucklers precise strike |
+  | Extra Panache  | 3rd level feat           | +2 Panache to total pool                                                                                 |
+  | Iron Will      | 4th level bonus feat     | +2 to Will Saves                                                                                     |
+  |----------------+--------------------------+----------------------------------------------------------------------------------------------------------|
+
+  #+NAME:SpeciesFeatures
+  |-------------------+-------------------------------------------------|
+  | Name              | Description                                     |
+  |-------------------+-------------------------------------------------|
+  | +2 to One Ability | +2 bonus to ability score of choice at creation |
+  | Normal Speed      | 30 feet/turn                                    |
+  | Bonus Feat        | 1st level                                       |
+  | Skilled           | +1 skill rank per level +1 at first level       |
+  | Languages         | Common                                          |
+  |-------------------+-------------------------------------------------|
+
+  #+NAME:ClassFeatures
+  |-------------------------------+-------------------------------------------------------------------------|
+  | Name                          | Description                                                             |
+  |-------------------------------+-------------------------------------------------------------------------|
+  | Weapons and Armor Proficience | Proficient in all weapons, light armor and bucklers                     |
+  | Panache & Deeds               |                                                                         |
+  | Swashbuckler Finesse          | Weapon Finesse Feat + Charisma instead of Intelligence for combat feats |
+  | Charmed Life                  | 3/day add Chr to savings throw (at 6th,10th, increases by 1)            |
+  | Nimble                        | +1 dodge bonus to AC when wearing light armor or no armor               |
+  | Bonus Feats                   | At 4th level, and every 4 thereafter, bonus feat                        |
+  |-------------------------------+-------------------------------------------------------------------------|
+
+  #+NAME:Deeds
+  |---------------------------+-----------------------------------------------------------------------------------|
+  | Name                      | Description                                                                       |
+  |---------------------------+-----------------------------------------------------------------------------------|
+  | Derring Do                | Spend 1 panache and add 1d6 to various checks. A natural 6 allows additional roll |
+  | Dodging Panache           | 1 panache to move 5 feet, add to AC                                               |
+  | Opportune Parry & Riposte | 1 panache to parry, and possibly counter-attack                                   |
+  | Kip-Up                    | With 1 panache, can stand up better. Or spend 1 to do it quicker                  |
+  | Menacing Swordplay        | With 1 panache, hit opponent & demoralize as swift action                         |
+  | Precise Strike            | With 1 panache, add swashbuckler level to damage                                  |
+  | Swashbuckler Initiative   | With 1 panache, +2 to initiative checks                                           |
+  |---------------------------+-----------------------------------------------------------------------------------|
+
+
+
+* Defense
+  #+NAME:Saves
+  |---+---------------+-------+------+---------+---------+------|
+  | ! | Saving Throws | Total | Base | Ability | Enhance | Misc |
+  |---+---------------+-------+------+---------+---------+------|
+  | # | Fortitude     |     2 |    1 |       1 |         |      |
+  | # | Reflex        |     8 |    4 |       4 |         |      |
+  | # | Will          |     3 |    1 |       0 |       2 |      |
+  |---+---------------+-------+------+---------+---------+------|
+  #+TBLFM: $5=remote(Stats,@3$Modifier)::@2$3..@4$3=vsum($4..$7)::@2$4=remote(Class, @>$Fort)::@2$5=remote(Stats, @4$Modifier)::@3$4=remote(Class, @>$Ref)::@4$4=remote(Class, @>$Will)::@4$5=remote(Stats, @6$Modifier)
+
+  #+NAME:HP
+  |---+--------------+----|
+  | # | Base         | 34 |
+  |   | Temporary HP |    |
+  |---+--------------+----|
+  | # | Total        | 34 |
+  |---+--------------+----|
+  #+TBLFM: @1$3=remote(Class, @2$HP)::@3$3=@1$3+@2$3
+
+  #+NAME:AC
+  |---+-----------+-------+------+-------+--------+-----+------+-------+---------+---------+------|
+  | ! | Type      | Total | Base | Armor | Shield | Dex | Size | Dodge | Natural | Deflect | Misc |
+  |---+-----------+-------+------+-------+--------+-----+------+-------+---------+---------+------|
+  | # | AC        |    18 |   10 |     1 | 1      |   4 |    0 |     1 |       1 |         |      |
+  | # | Touch     |    15 |   10 |   N/A | N/A    |   4 |    0 |     1 |     N/A |         |      |
+  | # | Flat-foot |    12 |   10 |     1 | N/A    | N/A |    0 |   N/A |       1 |         |      |
+  |---+-----------+-------+------+-------+--------+-----+------+-------+---------+---------+------|
+  #+TBLFM: @2$3..@>$3=vsum($4..$12);N::@2$5=remote(Armor, @2$AC)::@2$6=remote(Armor, @3$AC)::@2$7..@3$7=min(remote(Stats, @3$Modifier), remote(Armor, @>$6)::@2$8..@>$8=remote(Size, @2$1)::@4$5=remote(Armor, @2$AC)
+
+  #+NAME:CMD
+  |---+-----+-------+------+-----+-----+-----+------+------|
+  | ! |     | Total | Base | BAB | Dex | Str | Size | Misc |
+  |---+-----+-------+------+-----+-----+-----+------+------|
+  | # | CMD |    18 |   10 |   4 |   4 |   0 |    0 |      |
+  |---+-----+-------+------+-----+-----+-----+------+------|
+  #+TBLFM: @2$3=vsum($4..$9)::@2$5=remote(Class, @>$BAB)::@2$6=remote(Stats, @3$Modifier)::@2$7=remote(Stats, @2$Modifier)::@2$8=remote(Size, @2$1)
+
+  #+NAME:Resistances
+  |------------------+---|
+  | Damage Reduction |   |
+  | Spell Resistance |   |
+  |------------------+---|
+  
+* Attacks
+  #+NAME:AttackToHit
+  |---+--------+-------+-------------------+---------+------+------+----------------------------------------------------|
+  | ! |        | Total | Base Attack Bonus | Ability | Size | Misc | Notes                                              |
+  |   |        |       |                   |         |      |      |                                                    |
+  |---+--------+-------+-------------------+---------+------+------+----------------------------------------------------|
+  | # | Melee  |     8 |                 4 |       4 |    0 |      | Dex instead of strength due to Weapon Finesse Feat |
+  | # | Ranged |     8 |                 4 |       4 |    0 |      |                                                    |
+  | # | CMB    |     4 |                 4 |       0 |    0 |      |                                                    |
+  |---+--------+-------+-------------------+---------+------+------+----------------------------------------------------|
+  #+TBLFM: @3$3..@5$3=vsum($4..$7)::@3$4..@5$4=remote(Class, @>$BAB)::@3$5=remote(Stats, @3$Modifier)::@3$6=remote(Size, @2$1)::@4$5=remote(Stats, @3$Modifier)::@4$6=remote(Size, @2$1)::@5$5=remote(Stats, @2$Modifier)::@5$6=remote(Size, @2$1)
+
+  #+NAME:AttackDamage
+  |---+----------------------+---------------------------------------------------------+-----------------------------------------------------------------+------+-------+------+------+-------|
+  | ! | Weapon               | Attack To Hit                                           | Damage                                                          | Crit | Range | Size | Type | Notes |
+  |---+----------------------+---------------------------------------------------------+-----------------------------------------------------------------+------+-------+------+------+-------|
+  |   | Cutlass (masterwork) | 1d20 + 8 (1d6 +1 (masterwork) +3 (BAB) +4 (DextFinesse) | 1d6+7 (1d6 + 4 (Slashing Grace) + 3 (Precise Strike, per level) | x2   |       |      |      |       |
+  |---+----------------------+---------------------------------------------------------+-----------------------------------------------------------------+------+-------+------+------+-------|
+
+** Attacking Notes
+
+* Skills
+  # To mark as a class skill just put a 1 in the class column, org mode doesn't
+  # support checkboxes in tables yet. You can add or change the ability the
+  # stat depends on by modifying the Stat column. If a skill is affected by
+  # armor penalty just mark it with a 1 in the Armor Penalty column
+  #+NAME:Skills
+  |---+-------------------+---------------+-------+----------------------+------+--------+-------+---------+---------+------|
+  | ! | Training Required | Armor Penalty | Class | Skill                | Stat |  Total | Ranks | Ability | Trained | Misc |
+  |---+-------------------+---------------+-------+----------------------+------+--------+-------+---------+---------+------|
+  | # |                   |             1 |     1 | @Acrobatics          | Dex  |     11 |     4 |       4 |       3 |      |
+  | # |                   |               |       | Appraise             | Int  |      0 |       |       0 |         |      |
+  | # |                   |               |     1 | @Bluff               | Cha  |      7 |     1 |       3 |       3 |      |
+  | # |                   |             1 |     1 | @Climb               | Str  |      4 |     1 |       0 |       3 |      |
+  | # |                   |               |     1 | @Craft:              | Int  |      0 |       |       0 |         |      |
+  | # |                   |               |     1 | @Craft:              | Int  |      0 |       |       0 |         |      |
+  | # |                   |               |     1 | @Diplomacy           | Cha  |      7 |     1 |       3 |       3 |      |
+  | # |                 1 |             1 |       | Disable Device       | Dex  |      - |       |       4 |         |      |
+  | # |                   |               |       | Disguise             | Cha  |      3 |       |       3 |         |      |
+  | # |                   |             1 |     1 | @Escape Artist       | Dex  |      8 |     1 |       4 |       3 |      |
+  | # |                   |             1 |       | Fly                  | Dex  |      4 |       |       4 |         |      |
+  | # |                 1 |               |       | Handle Animal        | Cha  |      - |       |       3 |         |      |
+  | # |                   |               |       | Heal                 | Wis  |      0 |       |       0 |         |      |
+  | # |                   |               |     1 | @Intimidate          | Cha  |     10 |     4 |       3 |       3 |      |
+  | # |                 1 |               |     1 | @Knowledge: Local    | Int  |      4 |     1 |       0 |       3 |      |
+  | # |                 1 |               |     1 | @Knowledge: Nobility | Int  |      - |       |       0 |         |      |
+  | # |                 1 |               |       | Linguistics          | Int  |      - |       |       0 |         |      |
+  | # |                   |               |     1 | @Perception          | Wis  |      8 |     4 |       0 |       3 |    1 |
+  | # |                   |               |     1 | @Perform:            | Cha  |      3 |       |       3 |         |      |
+  | # |                 1 |               |     1 | @Profession: Sailor  | Wis  |      4 |     1 |       0 |       3 |      |
+  | # |                 1 |               |     1 | @Profession: Cook    | Wis  |      4 |     1 |       0 |       3 |      |
+  | # |                   |             1 |       | Ride                 | Dex  |      4 |       |       4 |         |      |
+  | # |                   |               |     1 | @Sense Motive        | Wis  |      4 |     1 |       0 |       3 |      |
+  | # |                 1 |             1 |     1 | @Sleight of Hand     | Dex  |      8 |     1 |       4 |       3 |      |
+  | # |                 1 |               |       | Spellcraft           | Int  |      - |       |       0 |         |      |
+  | # |                   |             1 |       | Stealth              | Dex  |      4 |       |       4 |         |      |
+  | # |                   |               |       | Survival             | Wis  |      0 |       |       0 |         |      |
+  | # |                   |             1 |     1 | @Swim                | Str  |      4 |     1 |       0 |       3 |      |
+  | # |                 1 |               |       | Use Magic Device     | Cha  |      - |       |       3 |         |      |
+  |---+-------------------+---------------+-------+----------------------+------+--------+-------+---------+---------+------|
+  | # |                   |               |       |                      |      | Total: |    22 |         |         |      |
+  |---+-------------------+---------------+-------+----------------------+------+--------+-------+---------+---------+------|
+  #+TBLFM: @II$7..@III$7=if(($2 > 0 && $8 > 0) || ($2 == 0) ,vsum($8..$11)+($3*remote(Armor, @>$Penalty)), string("-"))::@II$9..@III$9='(cond ((string= $6 "Str") remote(Stats, @2$Modifier)) ((string= $6 "Dex") remote(Stats, @3$Modifier)) ((string= $6 "Int") remote(Stats, @5$Modifier)) ((string= $6 "Wis") remote(Stats, @6$Modifier)) ((string= $6 "Cha") remote(Stats, @7$Modifier)))::@II$10..@III$10=if($4 > 0 && $8 > 0, 3, string(""))::@>$8=vsum(@2$8..@-1$8)
+
+* Inventory
+
+** Equipment
+   # Just add new rows for new items
+   #+NAME:Equipment
+   |---+------------+----------+---------------|
+   | ! | Name       | Quantity | Weight        |
+   |---+------------+----------+---------------|
+   |   | backpack   |        1 |               |
+   |   | bedroll    |        1 |               |
+   |   | belt       |        1 |               |
+   |   | pouch      |        1 |               |
+   |   | iron pot   |        1 |               |
+   |   | journal    |        1 |               |
+   |   | mess kit   |        1 |               |
+   |   | mirror     |        1 |               |
+   |   | rope       |        1 |               |
+   |   | soap       |        1 |               |
+   |   | rations    |        5 |               |
+   |   | cutlass    |        1 |               |
+   |   | buckler    |        1 |               |
+   |   | blanket    |        1 |               |
+   |   | candles    |       10 |               |
+   |   | fishhooks  |        2 |               |
+   |   | twine 50ft |        1 |               |
+   |---+------------+----------+---------------|
+   |   |            |          | Total Weight: |
+   |---+------------+----------+---------------|
+   | # |            |          | #ERROR        |
+   |---+------------+----------+---------------|
+   #+TBLFM: @>$4=vsum(@INVALID$4..@-2$4)
+
+   # Worn magic items
+   #+NAME:WornEquipment
+   |-----------+------------------------------|
+   | Head      |                              |
+   | Face      |                              |
+   | Throat    | Amulet of Natural Armor (+1) |
+   | Shoulders |                              |
+   | Body      |                              |
+   | Torso     |                              |
+   | Arms      |                              |
+   | Hands     |                              |
+   | Ring      |                              |
+   | Ring      |                              |
+   | Waist     |                              |
+   | Feet      |                              |
+   |-----------+------------------------------|
+
+   #+NAME:Armor
+   |---+---------+---------------+---------+----+---------+---------+----------------+------+------+----------|
+   | ! | Type    | Name          | Enhance | AC | Max Dex | Penalty | Spell Fail (%) | Type | Size | Material |
+   |---+---------+---------------+---------+----+---------+---------+----------------+------+------+----------|
+   |   | Armor   | Leather Armor |       1 |  1 |       6 |      -0 |             10 |      | M    |          |
+   |---+---------+---------------+---------+----+---------+---------+----------------+------+------+----------|
+   | # | Totals: |               |         |  1 |       6 |       0 |             10 |      |      |          |
+   |---+---------+---------------+---------+----+---------+---------+----------------+------+------+----------|
+   #+TBLFM: @3$5=vsum(@2$5..@-1$5)::@3$6=@2$6::@3$7=vsum(@2$7..@-1$7)::@3$8=vsum(@2$8..@-1$8)
+
+** Magic Items
+   #+NAME:MagicItems
+   |------+---------+--------------|
+   | Item | Charges | Caster Level |
+   |------+---------+--------------|
+   |      |         |              |
+   |      |         |              |
+   |      |         |              |
+   |------+---------+--------------|
+
+** Wealth
+   #+NAME:Wealth
+   |----------+------|
+   | Platinum |      |
+   | Gold     |      |
+   | Silver   |      |
+   | Copper   |      |
+   |----------+------|
+
+** Bags and Containers
+   #+NAME:Bags
+   |-----------+--------+--------|
+   | Container | Volume | Weight |
+   |-----------+--------+--------|
+   | backpack  |        |        |
+   |-----------+--------+--------|
