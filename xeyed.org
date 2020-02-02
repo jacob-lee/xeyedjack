@@ -10,6 +10,7 @@
 * Basic Character Info
   - Name :: X Eyed Jack
   - Race :: Human
+  - Level :: 5
   - Gender :: Male
   - Height :: 6ft
   - Weight :: 204lbs
@@ -26,7 +27,7 @@
   |          0 |
   |------------|
 
-* Character Stats
+Character Stats
   #+NAME:Stats
   |---+--------------+-------+----------+------+----------+---------+------|
   | ! | Stat         | Total | Modifier | Base | Inherent | Enhance | Misc |
@@ -40,38 +41,38 @@
   |---+--------------+-------+----------+------+----------+---------+------|
   #+TBLFM: $3=vsum($5..$8)::$4=floor(($3 - 10) / 2)
 
-  #+NAME:Initiative
+#+NAME:Initiative
   |---+------------+-------+-----------+-------------+-------------------------|
   | ! |            | Total | Dexterity | Reactionary | Swashbuckler Initiative |
   |---+------------+-------+-----------+-------------+-------------------------|
-  | # | Initiative |     8 |         4 |           2 |                       2 |
+  | # | Initiative | 8     | 4         |           2 |                       2 |
   |---+------------+-------+-----------+-------------+-------------------------|
-  #+TBLFM: @2$3=vsum(@2$4..@2$6)::@2$4=remote(Stats, @3$Modifier)
+#+TBLFM: @2$3=vsum(@2$4..@2$6)::@2$4=remote(Stats, @3$Modifier)
 
 * Class
   #+NAME:Class
   |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
   | ! |     HP | HD  | Class Name    | BAB | Skills | Fort | Ref | Will | Levels |
   |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
-  |   |     34 | d10 | Swashbuckler  |   4 |     17 |    1 |   4 |    1 |      4 |
+  |   |     40 | d10 | Swashbuckler  |   5 |     17 |    1 |   4 |    1 |      5 |
   |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
   |   | Totals |     | Favored Class |     |        |      |     |      |        |
   |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
-  | # |     34 |     | Swashbuckler  |   4 |     17 |    1 |   4 |    1 |      4 |
+  | # | 40     |     | Swashbuckler  | 5   |     17 | 1    | 4   | 1    | 5      |
   |---+--------+-----+---------------+-----+--------+------+-----+------+--------|
   #+TBLFM: @>$2=vsum(@2..@-2)::@>$5..@>$10=vsum(@2..@-2)
 
   #+NAME:Experience
-  |------------+------|
-  | Experience | 9100 |
-  |------------+------|
+  |------------+---|
+  | Experience |   |
+  |------------+---|
 
   #+NAME:Panache
-  |---+-------+------------+-------------+------|
-  | ! | Total | Base (Chr) | Feat        | Misc |
-  |---+-------+------------+-------------+------|
-  | # |     5 |          3 |           2 |      |
-  |---+-------+------------+-------------+------|
+  |---+-------+------------+------+------|
+  | ! | Total | Base (Chr) | Feat | Misc |
+  |---+-------+------------+------+------|
+  | # | 5     | 3          |    2 |      |
+  |---+-------+------------+------+------|
   #+TBLFM: @>$2=vsum(@>$3..@>$5)::@2$3=remote(Stats, @7$Modifier) 
 
   #+NAME:Feats
@@ -82,7 +83,7 @@
   | Weapon Finesse | Via Swashbuckler Finesse | Dexterity mod on attack rolls with light weapon, rapier, whip, spiked chain                              |
   | Slashing Grace | 1st level feat           | Treat slashing weapon as piercing. Use Dex instead of Str to damage. Allows Swashbucklers precise strike |
   | Extra Panache  | 3rd level feat           | +2 Panache to total pool                                                                                 |
-  | Iron Will      | 4th level bonus feat     | +2 to Will Saves                                                                                     |
+  | Iron Will      | 4th level bonus feat     | +2 to Will Saves                                                                                         |
   |----------------+--------------------------+----------------------------------------------------------------------------------------------------------|
 
   #+NAME:SpeciesFeatures
@@ -106,6 +107,7 @@
   | Charmed Life                  | 3/day add Chr to savings throw (at 6th,10th, increases by 1)            |
   | Nimble                        | +1 dodge bonus to AC when wearing light armor or no armor               |
   | Bonus Feats                   | At 4th level, and every 4 thereafter, bonus feat                        |
+  | Swashbuckler Weapon Training  | +1 attack/damage one-handed light piercing weapons + Improved Critical  |
   |-------------------------------+-------------------------------------------------------------------------|
 
   #+NAME:Deeds
@@ -128,18 +130,18 @@
   |---+---------------+-------+------+---------+---------+------|
   | ! | Saving Throws | Total | Base | Ability | Enhance | Misc |
   |---+---------------+-------+------+---------+---------+------|
-  | # | Fortitude     |     2 |    1 |       1 |         |      |
-  | # | Reflex        |     8 |    4 |       4 |         |      |
-  | # | Will          |     3 |    1 |       0 |       2 |      |
+  | # | Fortitude     | 2     | 1    | 1       |         |      |
+  | # | Reflex        | 8     | 4    | 4       |         |      |
+  | # | Will          | 3     | 1    | 0       |       2 |      |
   |---+---------------+-------+------+---------+---------+------|
   #+TBLFM: $5=remote(Stats,@3$Modifier)::@2$3..@4$3=vsum($4..$7)::@2$4=remote(Class, @>$Fort)::@2$5=remote(Stats, @4$Modifier)::@3$4=remote(Class, @>$Ref)::@4$4=remote(Class, @>$Will)::@4$5=remote(Stats, @6$Modifier)
 
   #+NAME:HP
   |---+--------------+----|
-  | # | Base         | 34 |
+  | # | Base         | 40 |
   |   | Temporary HP |    |
   |---+--------------+----|
-  | # | Total        | 34 |
+  | # | Total        | 40 |
   |---+--------------+----|
   #+TBLFM: @1$3=remote(Class, @2$HP)::@3$3=@1$3+@2$3
 
@@ -147,18 +149,17 @@
   |---+-----------+-------+------+-------+-----+------+-------+---------+------|
   | ! | Type      | Total | Base | Armor | Dex | Size | Dodge | Deflect | Misc |
   |---+-----------+-------+------+-------+-----+------+-------+---------+------|
-  | # | AC        |    20 |   10 |     5 |   4 |    0 |     1 |         |      |
-  | # | Touch     |    15 |   10 |   N/A |   4 |    0 |     1 |         |      |
-  | # | Flat-foot |    15 |   10 |     5 | N/A |    0 |   N/A |         |      |
+  | # | AC        | 20    |   10 | 5     |   4 | 0    |     1 |         |      |
+  | # | Touch     | 15    |   10 |       |   4 | 0    |     1 |         |      |
+  | # | Flat-foot | 15    |   10 | 5     |     | 0    |       |         |      |
   |---+-----------+-------+------+-------+-----+------+-------+---------+------|
-  #+TBLFM: @2$3..@>$3=vsum($4..$11);N::@2$5=remote(Armor, @4$Enhance) + remote(Armor, @4$AC)::@2$6..@3$6=min(remote(Stats, @3$Modifier), remote(Armor, @>$6)::@2$7..@>$7=remote(Size, @2$1)::@4$5=remote(Armor, @4$Enhance)+remote(Armor, @4$AC)
-
+  #+TBLFM: @2$3..@>$3=vsum($4..$10);N::@2$5=remote(Armor, @4$Enhance) + remote(Armor, @4$AC)::@2$6..@3$6=min(remote(Stats, @3$Modifier), remote(Armor, @>$6)::@2$7..@>$7=remote(Size,@2$2)::@4$5=remote(Armor,@4$Enhance)+remote(Armor,@4$AC)
 
   #+NAME:CMD
   |---+-----+-------+------+-----+-----+-----+------+------|
   | ! |     | Total | Base | BAB | Dex | Str | Size | Misc |
   |---+-----+-------+------+-----+-----+-----+------+------|
-  | # | CMD |    18 |   10 |   4 |   4 |   0 |    0 |      |
+  | # | CMD | 19    |   10 | 5   |   4 | 0   | 0    |      |
   |---+-----+-------+------+-----+-----+-----+------+------|
   #+TBLFM: @2$3=vsum($4..$9)::@2$5=remote(Class, @>$BAB)::@2$6=remote(Stats, @3$Modifier)::@2$7=remote(Stats, @2$Modifier)::@2$8=remote(Size, @2$1)
 
@@ -174,18 +175,18 @@
   | ! |        | Total | Base Attack Bonus | Ability | Size | Misc | Notes                                              |
   |   |        |       |                   |         |      |      |                                                    |
   |---+--------+-------+-------------------+---------+------+------+----------------------------------------------------|
-  | # | Melee  |     8 |                 4 |       4 |    0 |      | Dex instead of strength due to Weapon Finesse Feat |
-  | # | Ranged |     8 |                 4 |       4 |    0 |      |                                                    |
-  | # | CMB    |     4 |                 4 |       0 |    0 |      |                                                    |
+  | # | Melee  | 9     | 5                 | 4       |    0 |      | Dex instead of strength due to Weapon Finesse Feat |
+  | # | Ranged | 9     | 5                 | 4       |    0 |      |                                                    |
+  | # | CMB    | 5     | 5                 | 0       |    0 |      |                                                    |
   |---+--------+-------+-------------------+---------+------+------+----------------------------------------------------|
   #+TBLFM: @3$3..@5$3=vsum($4..$7)::@3$4..@5$4=remote(Class, @>$BAB)::@3$5=remote(Stats, @3$Modifier)::@3$6=remote(Size, @2$1)::@4$5=remote(Stats, @3$Modifier)::@4$6=remote(Size, @2$1)::@5$5=remote(Stats, @2$Modifier)::@5$6=remote(Size, @2$1)
 
   #+NAME:AttackDamage
-  |---+-------------------------------+--------------------------------------------+-----------------------------------------------------------------------------+------+-------+------+------+--------------------------|
-  | ! | Weapon                        | Attack To Hit                              | Damage                                                                      | Crit | Range | Size | Type | Notes                    |
-  |---+-------------------------------+--------------------------------------------+-----------------------------------------------------------------------------+------+-------+------+------+--------------------------|
-  |   | Tidewater Cutlass + 1 + shock | 1d20 + 9 (1d6 +1 +4 (BAB) +4 (DextFinesse) | 1d6+8 + 1d6 shock (1d6 + 4 (Slashing Grace) + 4 (Precise Strike, per level) | x2   |       |      |      | hydraulic push and shock |
-  |---+-------------------------------+--------------------------------------------+-----------------------------------------------------------------------------+------+-------+------+------+--------------------------|
+  |---+--------------------------------------+--------------------------------------------+-----------------------------------------------------------------------------+------+-------+------+------+--------------------------|
+  | ! | Weapon                               | Attack To Hit                              | Damage                                                                      | Crit | Range | Size | Type | Notes                    |
+  |---+--------------------------------------+--------------------------------------------+-----------------------------------------------------------------------------+------+-------+------+------+--------------------------|
+  |   | Tidewater Cutlass + 1 + shock + keen | 1d20 + 9 (1d6 +1 +4 (BAB) +4 (DextFinesse) | 1d6+8 + 1d6 shock (1d6 + 4 (Slashing Grace) + 4 (Precise Strike, per level) | x2   | 15-20 |      |      | hydraulic push and shock |
+  |---+--------------------------------------+--------------------------------------------+-----------------------------------------------------------------------------+------+-------+------+------+--------------------------|
 
 ** Attacking Notes
 
@@ -211,13 +212,13 @@
   | # |                   |             1 |       | Fly                  | Dex  |      4 |       |       4 |         |      |
   | # |                 1 |               |       | Handle Animal        | Cha  |      - |       |       3 |         |      |
   | # |                   |               |       | Heal                 | Wis  |      0 |       |       0 |         |      |
-  | # |                   |               |     1 | @Intimidate          | Cha  |     10 |     4 |       3 |       3 |      |
+  | # |                   |               |     1 | @Intimidate          | Cha  |     10 |     5 |       3 |       3 |      |
   | # |                 1 |               |     1 | @Knowledge: Local    | Int  |      4 |     1 |       0 |       3 |      |
   | # |                 1 |               |     1 | @Knowledge: Nobility | Int  |      - |       |       0 |         |      |
   | # |                 1 |               |       | Linguistics          | Int  |      - |       |       0 |         |      |
   | # |                   |               |     1 | @Perception          | Wis  |      8 |     4 |       0 |       3 |    1 |
   | # |                   |               |     1 | @Perform:            | Cha  |      3 |       |       3 |         |      |
-  | # |                 1 |               |     1 | @Profession: Sailor  | Wis  |      4 |     1 |       0 |       3 |      |
+  | # |                 1 |               |     1 | @Profession: Sailor  | Wis  |      6 |     3 |       0 |       3 |      |
   | # |                 1 |               |     1 | @Profession: Cook    | Wis  |      4 |     1 |       0 |       3 |      |
   | # |                   |             1 |       | Ride                 | Dex  |      4 |       |       4 |         |      |
   | # |                   |               |     1 | @Sense Motive        | Wis  |      4 |     1 |       0 |       3 |      |
@@ -225,7 +226,7 @@
   | # |                 1 |               |       | Spellcraft           | Int  |      - |       |       0 |         |      |
   | # |                   |             1 |       | Stealth              | Dex  |      4 |       |       4 |         |      |
   | # |                   |               |       | Survival             | Wis  |      0 |       |       0 |         |      |
-  | # |                   |             1 |     1 | @Swim                | Str  |      4 |     1 |       0 |       3 |      |
+  | # |                   |             1 |     1 | @Swim                | Str  |      5 |     2 |       0 |       3 |      |
   | # |                 1 |               |       | Use Magic Device     | Cha  |      - |       |       3 |         |      |
   |---+-------------------+---------------+-------+----------------------+------+--------+-------+---------+---------+------|
   | # |                   |               |       |                      |      | Total: |    22 |         |         |      |
